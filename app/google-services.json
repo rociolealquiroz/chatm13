@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "832444945488",
+    "project_id": "chatm13-a0c16",
+    "storage_bucket": "chatm13-a0c16.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:832444945488:android:fa1bc817ae2602a530ed55",
+        "android_client_info": {
+          "package_name": "org.insbaixcamp.reus.chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "832444945488-utqev7obddlra1atal7b8v8vsmk1mob6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0v0JeRjyU6GjdU33cBDoM_Ob2y0OUn0M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "832444945488-utqev7obddlra1atal7b8v8vsmk1mob6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
