@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">chat</string>
+    <string name="app_name">Chat</string>
     <string name="login">Set name</string>
+    <string name="b_update_name">UPDATE</string>
 </resources>
