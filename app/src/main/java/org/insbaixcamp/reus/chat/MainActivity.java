@@ -1,5 +1,6 @@
 package org.insbaixcamp.reus.chat;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -46,5 +47,18 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (item.getItemId() == R.id.sign_in){
+            Intent intent = new Intent(this, SignIn.class);
+
+            startActivity(intent);
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 }

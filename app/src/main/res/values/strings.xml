@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">chat</string>
-    <string name="login">Iniciar Sesión</string>
+    <string name="login">Set name</string>
 </resources>
