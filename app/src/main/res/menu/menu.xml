@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/sign_in"
+        android:icon="@drawable/ic_baseline_login_24"
+        android:title="@string/login"
+        app:showAsAction="never" />
 </menu>
