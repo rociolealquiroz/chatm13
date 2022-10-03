@@ -32,12 +32,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-//
-//
-//
-//        // Initialize Firebase Auth
         mFirebaseAuth = FirebaseAuth.getInstance();
+        setContentView(R.layout.activity_main);
+
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
         if (mFirebaseUser == null){
@@ -49,6 +46,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         signInAnonymously();
+    }
+
+
+    private void updateUI(FirebaseUser user) {
+
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("UserId",user.getUid());
+        editor.apply();
     }
 
     @Override
@@ -69,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 
     private void signInAnonymously(){
         mFirebaseAuth.signInAnonymously()
@@ -91,11 +98,4 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    private void updateUI(FirebaseUser user) {
-
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("UserId",mFirebaseUser.getUid());
-        editor.apply();
-    }
 }
