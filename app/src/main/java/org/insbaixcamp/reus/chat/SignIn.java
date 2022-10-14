@@ -37,9 +37,4 @@ public class SignIn extends AppCompatActivity {
 
 
 
-
-
-    //etUser.setText(sharedPref.getString(getResources().getString(R.string.preference_user_name),"anonymous"));
-
-
 }

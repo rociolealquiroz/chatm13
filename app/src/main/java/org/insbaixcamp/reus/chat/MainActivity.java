@@ -2,6 +2,8 @@ package org.insbaixcamp.reus.chat;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,15 +12,29 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.insbaixcamp.reus.chat.Message.Message;
+import org.insbaixcamp.reus.chat.Message.MessageAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +42,19 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
+
+    FirebaseDatabase database;
+    DatabaseReference myRef;
+    List<Message> chatList;
+
+    private MessageAdapter messageAdapter;
+    private LinearLayoutManager mLayoutManager;
+    EditText etMessage;
+
+    RecyclerView rv_messages;
+
+    FloatingActionButton fab;
+
     public static final String ANONYMOUS = "anonymous";
 
 
@@ -36,10 +65,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        rv_messages = findViewById(R.id.rv_messages);
+        fab = findViewById(R.id.fab);
+
+        etMessage = findViewById(R.id.input);
 
         if (mFirebaseUser == null){
             signInAnonymously();
         }
+
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("messages");
+        chatList = new ArrayList<Message>();
+        messageAdapter = new MessageAdapter(chatList, this);
+        rv_messages.setAdapter(messageAdapter);
+
+        actualitzarChat();
+        escriureAlChat();
+
     }
 
     @Override
@@ -78,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void signInAnonymously(){
+
         mFirebaseAuth.signInAnonymously()
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -96,6 +140,50 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+
+
+    private void escriureAlChat() {
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Creem l'objecte amb l'informació
+                Message message = new Message(getUserName(), etMessage.getText().toString());
+                //Fem un push a la base de dades
+                myRef.push().setValue(message);
+                etMessage.setText("");
+            }
+        });
+    }
+
+
+
+    private void actualitzarChat() {
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot item: snapshot.getChildren()
+                ) {
+                    Message message = item.getValue(Message.class);
+                    chatList.add(message);
+                }
+                messageAdapter.notifyDataSetChanged();
+                rv_messages.scrollToPosition(chatList.size()-1);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    private String getUserName() {
+        SharedPreferences sharedPref = this.getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        return sharedPref.getString(getResources().getString(R.string.preference_user_name),"anonymous");
     }
 
 }

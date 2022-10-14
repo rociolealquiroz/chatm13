@@ -70,9 +70,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
-            userid = itemView.findViewById(R.id.message_user);
-            message = itemView.findViewById(R.id.message_text);
-            //cardView = itemView.findViewById(R.id.cv_message);
+            userid = itemView.findViewById(R.id.tv_user);
+            message = itemView.findViewById(R.id.tv_message);
+            cardView = itemView.findViewById(R.id.cv_message);
         }
     }
 }
