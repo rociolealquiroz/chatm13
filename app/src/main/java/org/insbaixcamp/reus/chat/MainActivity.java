@@ -66,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
 
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         rv_messages = findViewById(R.id.rv_messages);
+
+        mLayoutManager = new LinearLayoutManager(this);
+        rv_messages.setLayoutManager(mLayoutManager);
+
         fab = findViewById(R.id.fab);
 
         etMessage = findViewById(R.id.input);
@@ -163,8 +167,8 @@ public class MainActivity extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot item: snapshot.getChildren()
-                ) {
+
+                for (DataSnapshot item: snapshot.getChildren()) {
                     Message message = item.getValue(Message.class);
                     chatList.add(message);
                 }
