@@ -45,6 +45,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     public void onBindViewHolder(@NonNull MessageAdapter.MessageViewHolder holder, int position) {
         holder.userid.setText(messageList.get(position).getUserId());
         holder.message.setText(messageList.get(position).getMessage());
+        holder.time.setText(messageList.get(position).getReadableTime());
         Log.i(TAG,userName);
         Log.i(TAG,messageList.get(position).getUserId());
         //Personalització del card si es meu o dels altres
@@ -66,6 +67,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     public class MessageViewHolder extends RecyclerView.ViewHolder {
         TextView userid;
         TextView message;
+        TextView time;
         CardView cardView;
 
         public MessageViewHolder(@NonNull View itemView) {
@@ -73,6 +75,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             userid = itemView.findViewById(R.id.tv_user);
             message = itemView.findViewById(R.id.tv_message);
             cardView = itemView.findViewById(R.id.cv_message);
+            time = itemView.findViewById(R.id.tv_time);
         }
     }
 }
