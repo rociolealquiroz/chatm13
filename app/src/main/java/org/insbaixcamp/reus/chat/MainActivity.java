@@ -152,11 +152,17 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Creem l'objecte amb l'informació
-                Message message = new Message(getUserName(), etMessage.getText().toString());
-                //Fem un push a la base de dades
-                myRef.push().setValue(message);
-                etMessage.setText("");
+
+                if (etMessage.getText().toString().isEmpty()) {
+                    Toast.makeText(MainActivity.this, "No puedes enviar un mensaje vacío", Toast.LENGTH_SHORT).show();
+                } else {
+                    //Creem l'objecte amb l'informació
+                    Message message = new Message(getUserName(), etMessage.getText().toString());
+                    //Fem un push a la base de dades
+                    myRef.push().setValue(message);
+                    etMessage.setText("");
+                }
+
             }
         });
     }
