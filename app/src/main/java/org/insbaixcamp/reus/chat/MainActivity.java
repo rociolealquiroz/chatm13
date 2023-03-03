@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                chatList.clear(); // Limpia la lista para evitar duplicación
                 for (DataSnapshot item: snapshot.getChildren()) {
                     Message message = item.getValue(Message.class);
                     chatList.add(message);
