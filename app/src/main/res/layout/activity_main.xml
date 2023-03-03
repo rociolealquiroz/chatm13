@@ -30,10 +30,14 @@
         android:clickable="true"
         android:minHeight="32dp"
         android:src="@android:drawable/ic_menu_send"
-        android:tint="@android:color/white"
+        android:tint="@android:color/black"
+        app:backgroundTint="@color/teal_700"
         app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:focusable="true"
+        android:contentDescription="TODO" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_layout"
@@ -48,7 +52,7 @@
             android:id="@+id/input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Input"
+            android:hint="@string/input"
             android:textColor="#000000"
             tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>

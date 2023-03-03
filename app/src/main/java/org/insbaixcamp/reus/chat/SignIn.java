@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.Objects;
+
 public class SignIn extends AppCompatActivity {
 
     @Override
@@ -17,6 +19,7 @@ public class SignIn extends AppCompatActivity {
         setContentView(R.layout.sign_in);
         EditText etUser = findViewById(R.id.etUsername);
         Button update = findViewById(R.id.bUpdateUsername);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         SharedPreferences sharedPref = getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);

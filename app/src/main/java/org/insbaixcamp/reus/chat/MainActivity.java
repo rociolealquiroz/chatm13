@@ -35,6 +35,7 @@ import org.insbaixcamp.reus.chat.Message.MessageAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mFirebaseAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_main);
+
 
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         rv_messages = findViewById(R.id.rv_messages);
