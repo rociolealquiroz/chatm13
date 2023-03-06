@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Chat</string>
-    <string name="login">Set name</string>
-    <string name="b_update_name">UPDATE</string>
+    <string name="login">Cambiar nombre</string>
+    <string name="b_update_name">ACTUALIZAR</string>
     <string name="preference_file_key">chat_preference</string>
     <string name="preference_user_name">preference_user_name</string>
     <string name="hint_username">Username</string>
     <string name="titleSign">Cambia tu nombre de usuario aquí</string>
-    <string name="input">Input</string>
+    <string name="input">Escribe aqui</string>
 </resources>
