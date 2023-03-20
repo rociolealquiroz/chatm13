@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Chat</string>
+    <string name="app_name">AnonChat</string>
     <string name="login">Cambiar nombre</string>
     <string name="b_update_name">ACTUALIZAR</string>
     <string name="preference_file_key">chat_preference</string>
